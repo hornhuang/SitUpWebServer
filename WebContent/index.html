@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>situp_api</title></head>
+<body><h1>本站对外接口</h1>
+<ul>
+<li>本站遵循 MIT 开源协议</li>
+<li>禁止任何形式侵犯版权</li>
+<li>本站对外开放所有 api </li>
+
+</ul>
+<p>&nbsp;</p>
+<p><img src="https://github.com/FishInWater-1999/SitUpWebServer/blob/master/WebContent/drawable/thVCGWHGMT.jpg" referrerpolicy="no-referrer"></p>
+<p>&nbsp;</p>
+<h2>用户</h2>
+<ul>
+<li>注册</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/regist?username=qwe&amp;password=qwe
+
+返回 int
+</code></pre>
+<ul>
+<li>登录</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/login?username=qwe&amp;password=qwe
+
+返回 UserBean JSON
+</code></pre>
+<ul>
+<li>修改</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/update?user_id=0c68ab94-5af5-43ea-8be4-6bc5c4e29b3e&amp;user_password=123456
+
+返回 UserBean JSON
+</code></pre>
+<p>&nbsp;</p>
+<h2>帖子</h2>
+<ul>
+<li>发布</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/publishpost?user_id=qwe&amp;post_title=qwe&amp;post_content=qwe&amp;post_date=q-w-e
+
+返回 PostBean JSON
+</code></pre>
+<ul>
+<li>删除</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/deletepost?post_id=3c3b10ae-797f-49a6-a11f-8649ea350767
+
+返回 int
+</code></pre>
+<p>&nbsp;</p>
+<h2>计划</h2>
+<ul>
+<li>发布</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/AddPlan?plan_title=qwe&amp;plan_content=qwe&amp;plan_date=3-3-3&amp;plan_start_date=qwe&amp;plan_end_date=qwe&amp;plan_score=0
+
+返回 int JSON
+</code></pre>
+<ul>
+<li>修改</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/updateplan?plan_id=24cc4128-59c9-4fa9-93b1-7af7da35edb5&amp;plan_title=qwe&amp;plan_content=qwe&amp;plan_date=3-3-3&amp;plan_start_date=qwe&amp;plan_end_date=qwe&amp;plan_score=0
+
+返回 int JSON
+</code></pre>
+<ul>
+<li>删除</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/deleteplan?plan_id=5bdfa8d2-e642-4f64-9f73-677b7ce3e3c4
+
+返回 int
+</code></pre>
+<p>&nbsp;</p>
+<h2>点赞</h2>
+<ul>
+<li>点赞</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/addfavorite?post_id=qwe&amp;user_id=123123
+
+返回 int
+</code></pre>
+<ul>
+<li>取消点赞</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/cancelfavorite?favorite_id=59e49d1a-7306-4968-8c82-a76c792583b3
+
+返回 int
+</code></pre>
+<p>&nbsp;</p>
+<h2>收藏</h2>
+<ul>
+<li>收藏</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/addcollection?post_id=qwe&amp;user_id=123123
+
+返回 boolean
+</code></pre>
+<ul>
+<li>取消收藏</li>
+
+</ul>
+<pre><code>http://localhost:8080/SitUpWebServer/cancelcollection?collection_id=a214003a-2433-4b04-9f02-fa42cc57bcdd
+
+返回 boolean
+</code></pre>
+<p>&nbsp;</p>
+<h2>返回值</h2>
+<figure><table>
+<thead>
+<tr><th>类型</th><th>返回值</th></tr></thead>
+<tbody><tr><td>SUCCEED</td><td>1</td></tr><tr><td>FAILED</td><td>-1</td></tr><tr><td>WRONG_NAME</td><td>-2</td></tr><tr><td>WRONG_PASSWORD</td><td>-3</td></tr></tbody>
+</table></figure>
+<p>&nbsp;</p>
+<h1>项目地址</h1>
+<ul>
+<li><a href='https://github.com/FishInWater-1999/SitUpWebServer'>SitUpWebServer</a></li>
+
+</ul>
+<p>&nbsp;</p>
+<h1>MIT License</h1>
+<pre><code>Copyright (c) 2019-12-10 FishInWater-1999
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</code></pre>
+<p>&nbsp;</p>
+</body>
+</html>
