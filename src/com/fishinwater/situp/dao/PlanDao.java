@@ -15,7 +15,7 @@ public class PlanDao implements BaseDAO<PlanBean> {
 	@Override
 	public int add(PlanBean obj) {
 		// TODO Auto-generated method stub
-		int result = 0;
+		int result = IBaseModel.FAILED;
 		PlanBean planBean = obj;
 		Connection con= null;
 		PreparedStatement sta = null;
@@ -31,15 +31,17 @@ public class PlanDao implements BaseDAO<PlanBean> {
 			sta.setString(5, planBean.getPlan_score());
 			sta.setString(6, planBean.getPlan_start_date());
 			sta.setString(7, planBean.getPlan_end_date());
-			result = sta.executeUpdate();
+			if(sta.executeUpdate() == 1) {
+				result = IBaseModel.SUCCEED;
+			};
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			System.out.println(e);
 		}finally {
-			
+			con= null;
+			sta = null;
 		}
-		
 		return result;
 	}
 

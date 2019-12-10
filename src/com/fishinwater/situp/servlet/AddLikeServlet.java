@@ -39,9 +39,11 @@ public class AddLikeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LikeBean likeBean = BeansBuilder.
+		LikeBean likeBean = BeansBuilder.buildLikeBean(request);
 		LikeImpl likeImpl = new LikeImpl();
-		
+		int result = likeImpl.add(likeBean);
+		response.getWriter().print(result);
+		response.getWriter().close();
 	}
 
 }
