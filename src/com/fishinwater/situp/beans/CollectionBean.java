@@ -1,23 +1,23 @@
 package com.fishinwater.situp.beans;
 
-public class LikeBean {
+public class CollectionBean {
 	
-	private String like_id;
+	private String collection_id;
 	
 	private String user_id;
 	
 	private String post_id;
 
-	public LikeBean() {
+	public CollectionBean() {
 		super();
 	}
 
-	public String getLike_id() {
-		return like_id;
+	public String getCollection_id() {
+		return collection_id;
 	}
 
-	public void setLike_id(String like_id) {
-		this.like_id = like_id;
+	public void setCollection_id(String collection_id) {
+		this.collection_id = collection_id;
 	}
 
 	public String getUser_id() {
@@ -38,7 +38,7 @@ public class LikeBean {
 
 	@Override
 	public String toString() {
-		return "LikeBean [like_id=" + like_id + ", user_id=" + user_id + ", post_id=" + post_id + "]";
+		return "LikeBean [like_id=" + collection_id + ", user_id=" + user_id + ", post_id=" + post_id + "]";
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import com.fishinwater.situp.beans.FavoriteBean;
-import com.fishinwater.situp.beans.LikeBean;
+import com.fishinwater.situp.beans.CollectionBean;
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.PostBean;
 import com.fishinwater.situp.beans.UserBean;
@@ -104,13 +104,13 @@ public class BeansBuilder {
 	 * @param request
 	 * @return
 	 */
-	public static LikeBean buildLikeBean(HttpServletRequest request) {
-		LikeBean likeBean = new LikeBean();
-		likeBean.setLike_id(UUID.randomUUID().toString());
+	public static CollectionBean buildCollectionBean(HttpServletRequest request) {
+		CollectionBean likeBean = new CollectionBean();
+		likeBean.setCollection_id(UUID.randomUUID().toString());
 		likeBean.setPost_id(request.getParameter("post_id"));
 		likeBean.setUser_id(request.getParameter("user_id"));
-		if (request.getParameter("like_id") != null && request.getParameter("like_id").length() != 0) {
-			likeBean.setLike_id(request.getParameter("like_id"));
+		if (request.getParameter("collection_id") != null && request.getParameter("collection_id").length() != 0) {
+			likeBean.setCollection_id(request.getParameter("collection_id"));
 		}
 		return likeBean;
 	}

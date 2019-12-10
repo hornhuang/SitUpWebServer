@@ -7,21 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fishinwater.situp.beans.LikeBean;
-import com.fishinwater.situp.model.LikeImpl;
+import com.fishinwater.situp.beans.FavoriteBean;
+import com.fishinwater.situp.model.FavoriteImpl;
 import com.fishinwater.situp.utils.BeansBuilder;
+import com.sun.security.sasl.digest.FactoryImpl;
 
 /**
- * Servlet implementation class AddLikeServlet
+ * Servlet implementation class AddFavoriteServlet
  */
-@WebServlet("/addlike")
-public class AddLikeServlet extends HttpServlet {
+@WebServlet("/addfavorite")
+public class AddFavoriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddLikeServlet() {
+    public AddFavoriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,9 +40,9 @@ public class AddLikeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LikeBean likeBean = BeansBuilder.buildLikeBean(request);
-		LikeImpl likeImpl = new LikeImpl();
-		int result = likeImpl.add(likeBean);
+		FavoriteBean favoriteBean = BeansBuilder.buildFavoriteBean(request);
+		FavoriteImpl favoriteImpl = new FavoriteImpl();
+		int result = favoriteImpl.add(favoriteBean);
 		response.getWriter().print(result);
 		response.getWriter().close();
 	}
