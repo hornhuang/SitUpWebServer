@@ -6,7 +6,7 @@ public interface IPost<T extends PostBean> {
 	
 	int add(T t);
 	
-	int delete(int id);
+	int delete(String id);
 
 }
 

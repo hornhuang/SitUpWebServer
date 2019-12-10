@@ -9,7 +9,7 @@ public interface IPlan<T extends PlanBean> {
 	
 	int add(T plan);
 	
-	int del(T planid);
+	int del(String planid);
 	
 	T update(T plan);
 	

@@ -72,7 +72,7 @@ public class UserDao implements BaseDAO<UserBean> {
 		return null;
 	}
 
-	public int delete(UserBean key) {
+	public int delete(String id) {
 		int result = 0;
 
 		return result;

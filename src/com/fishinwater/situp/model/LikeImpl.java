@@ -12,7 +12,7 @@ public class LikeImpl implements ILike<LikeBean>{
 	}
 
 	@Override
-	public int delete(int id) {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

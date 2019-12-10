@@ -11,7 +11,7 @@ public interface BaseDAO<T> {
 
 	public T update(T obj);
 
-	public int delete(T key);
+	public int delete(String id);
 
 	public T getBy(DaoEnum flag, String where);
 

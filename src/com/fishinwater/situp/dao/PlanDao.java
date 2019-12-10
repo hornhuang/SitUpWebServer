@@ -47,7 +47,7 @@ public class PlanDao implements BaseDAO<PlanBean> {
 	}
 
 	@Override
-	public int delete(PlanBean key) {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

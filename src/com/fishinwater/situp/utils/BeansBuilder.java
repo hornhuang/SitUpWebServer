@@ -82,6 +82,9 @@ public class BeansBuilder {
 		postBean.setPost_title(request.getParameter("post_title"));
 		postBean.setPost_content(request.getParameter("post_content"));
 		postBean.setPost_date(request.getParameter("post_date"));
+		if (request.getParameter("post_id") != null && request.getParameter("post_id").length() != 0) {
+			postBean.setPost_id(request.getParameter("post_id"));
+		}
 		return postBean; 
 	}
 

@@ -7,9 +7,10 @@ import com.fishinwater.situp.model.base.IPost;
 public class PostImpl implements IPost<PostBean>{
 
 	@Override
-	public int delete(int id) {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		PostDao postDao = new PostDao();
+		return postDao.delete(id);
 	}
 
 	@Override

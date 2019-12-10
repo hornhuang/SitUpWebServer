@@ -6,6 +6,6 @@ public interface IFavorite<T extends FavoriteBean> {
 	
 	int add(T t);
 	
-	int delete(int id);
+	int delete(String id);
 
 }

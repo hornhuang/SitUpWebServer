@@ -2,6 +2,7 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 import com.fishinwater.situp.beans.PostBean;
@@ -14,7 +15,7 @@ public class PostDao implements BaseDAO<PostBean>{
 	@Override
 	public int add(PostBean obj) {
 		// TODO Auto-generated method stub
-		int result = IBaseModel.SUCCEED;
+		int result = IBaseModel.FAILED;
 		Connection connection;
 		PreparedStatement statement;
 		try {
@@ -26,10 +27,11 @@ public class PostDao implements BaseDAO<PostBean>{
 			statement.setString(3, obj.getPost_title());
 			statement.setString(4, obj.getPost_content());
 			statement.setString(5, obj.getPost_date());
-			result = statement.executeUpdate();
+			if (statement.executeUpdate() == 1) {
+				result = IBaseModel.SUCCEED;
+			}statement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			result = IBaseModel.FAILED;
 			// TODO: handle exception
 		}
 		return result;
@@ -42,9 +44,22 @@ public class PostDao implements BaseDAO<PostBean>{
 	}
 
 	@Override
-	public int delete(PostBean key) {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		int result = IBaseModel.FAILED;
+		Connection connection;
+		Statement statement;
+		String sql = "DELETE FROM post WHERE post_id = '" + id + "'";
+		try {
+			connection = JDBCUtils.getInstance().getConnection();
+			statement = connection.createStatement();
+			if (statement.executeUpdate(sql) == 1) {
+				result = IBaseModel.SUCCEED;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
 	}
 
 	@Override

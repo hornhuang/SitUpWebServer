@@ -20,7 +20,7 @@ public class PlanImpl implements IPlan<PlanBean> {
 	}
 
 	@Override
-	public int del(PlanBean planid) {
+	public int del(String planid) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

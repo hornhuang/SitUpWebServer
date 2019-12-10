@@ -55,7 +55,7 @@ public class UpdateUserServlet extends HttpServlet {
 		
 		Gson gson = new Gson();
 		String json = "";
-		if (user == null) {
+		if (result != null) {
 			json = gson.toJson(result);
 		}
 		

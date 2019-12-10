@@ -6,6 +6,6 @@ public interface ILike<T extends LikeBean> {
 	
 	int add(T t);
 	
-	int delete(int id);
+	int delete(String id);
 
 }

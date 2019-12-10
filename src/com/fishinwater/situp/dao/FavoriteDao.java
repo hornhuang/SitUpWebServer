@@ -20,7 +20,7 @@ public class FavoriteDao implements BaseDAO<FavoriteBean>{
 	}
 
 	@Override
-	public int delete(FavoriteBean key) {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

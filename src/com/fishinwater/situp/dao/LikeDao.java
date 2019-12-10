@@ -20,7 +20,7 @@ public class LikeDao implements BaseDAO<LikeBean>{
 	}
 
 	@Override
-	public int delete(LikeBean key) {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
