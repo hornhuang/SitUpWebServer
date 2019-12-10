@@ -35,6 +35,11 @@ public class FavoriteBean {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+
+	@Override
+	public String toString() {
+		return "FavoriteBean [favorite_id=" + favorite_id + ", post_id=" + post_id + ", user_id=" + user_id + "]";
+	}
 	
 	
 }

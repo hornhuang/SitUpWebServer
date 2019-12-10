@@ -34,10 +34,10 @@ public class UserDao implements BaseDAO<UserBean> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 			// TODO: handle exception
 		} finally {
-			// JDBCUtils.close(con, sta);
+			con = null;
+			sta = null;
 		}
 		return result;
 	}

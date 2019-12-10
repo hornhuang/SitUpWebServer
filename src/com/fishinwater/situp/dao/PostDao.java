@@ -16,8 +16,8 @@ public class PostDao implements BaseDAO<PostBean>{
 	public int add(PostBean obj) {
 		// TODO Auto-generated method stub
 		int result = IBaseModel.FAILED;
-		Connection connection;
-		PreparedStatement statement;
+		Connection connection = null;
+		PreparedStatement statement = null;
 		try {
 			String sql = "insert into post() values(?,?,?,?,?)";
 			connection = JDBCUtils.getInstance().getConnection();
@@ -29,10 +29,13 @@ public class PostDao implements BaseDAO<PostBean>{
 			statement.setString(5, obj.getPost_date());
 			if (statement.executeUpdate() == 1) {
 				result = IBaseModel.SUCCEED;
-			}statement.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
+		} finally {
+			connection = null;
+			statement = null;
 		}
 		return result;
 	}

@@ -2,7 +2,6 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 
 import com.fishinwater.situp.beans.LikeBean;
@@ -18,9 +17,10 @@ public class LikeDao implements BaseDAO<LikeBean>{
 		int result = IBaseModel.FAILED;
 		Connection connection = null;
 		PreparedStatement statement = null;
+		System.out.println(obj.toString());
 		try {
+			String sql = "INSERT INTO like () VALUES(?,?,?)";
 			connection = JDBCUtils.getInstance().getConnection();
-			String sql = "INSERT INTO plan () VALUES(?,?,?)";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, obj.getPost_id());
 			statement.setString(2, obj.getUser_id());
@@ -29,12 +29,13 @@ public class LikeDao implements BaseDAO<LikeBean>{
 				result = IBaseModel.SUCCEED;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO: handle exception
 		} finally {
 			connection = null;
 			statement = null;
 		}
-		return 0;
+		return result;
 	}
 
 	@Override

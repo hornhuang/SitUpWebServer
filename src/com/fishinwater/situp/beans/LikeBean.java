@@ -35,6 +35,11 @@ public class LikeBean {
 	public void setPost_id(String post_id) {
 		this.post_id = post_id;
 	}
+
+	@Override
+	public String toString() {
+		return "LikeBean [like_id=" + like_id + ", user_id=" + user_id + ", post_id=" + post_id + "]";
+	}
 	
 	
 
