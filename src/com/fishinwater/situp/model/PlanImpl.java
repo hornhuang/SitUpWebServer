@@ -19,7 +19,8 @@ public class PlanImpl implements IPlan<PlanBean> {
 	@Override
 	public int del(String planid) {
 		// TODO Auto-generated method stub
-		return 0;
+		PlanDao planDao = new PlanDao();
+		return planDao.delete(planid);
 	}
 
 	@Override

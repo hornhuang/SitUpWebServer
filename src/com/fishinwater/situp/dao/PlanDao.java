@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import com.fishinwater.situp.beans.PlanBean;
+import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
@@ -80,7 +81,23 @@ public class PlanDao implements BaseDAO<PlanBean> {
 	@Override
 	public int delete(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		int result = IBaseModel.FAILED;
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			connection = JDBCUtils.getInstance().getConnection();
+			statement = connection.createStatement();
+			String sql = "DELETE FROM plan WHERE plan_id = '" + id + "'";
+			if(statement.executeUpdate(sql) == 1) {
+				result = IBaseModel.SUCCEED;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			connection = null;
+			statement = null;
+		}
+		return result;
 	}
 
 	@Override
