@@ -2,6 +2,7 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 import com.fishinwater.situp.beans.FavoriteBean;
@@ -42,7 +43,23 @@ public class FavoriteDao implements BaseDAO<FavoriteBean>{
 	@Override
 	public int delete(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		int result = IBaseModel.FAILED;
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			connection = JDBCUtils.getInstance().getConnection();
+			statement = connection.createStatement();
+			String sql = "DELETE FROM favorite WHERE favorite_id = '" + id + "'";
+			statement.executeUpdate(sql);
+			result = IBaseModel.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			connection = null;
+			statement = null;
+		}
+		return result;
 	}
 
 	@Override

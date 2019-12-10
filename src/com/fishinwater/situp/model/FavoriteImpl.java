@@ -16,7 +16,8 @@ public class FavoriteImpl implements IFavorite<FavoriteBean>{
 	@Override
 	public int delete(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		FavoriteDao favoriteDao = new FavoriteDao();
+		return favoriteDao.delete(id);
 	}
 
 }

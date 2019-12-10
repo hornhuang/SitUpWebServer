@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fishinwater.situp.beans.FavoriteBean;
+import com.fishinwater.situp.model.FavoriteImpl;
+import com.fishinwater.situp.utils.BeansBuilder;
+
 /**
  * Servlet implementation class CancelFavoriteServlet
  */
-@WebServlet("/CancelFavoriteServlet")
+@WebServlet("/cancelfavorite")
 public class CancelFavoriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +31,7 @@ public class CancelFavoriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -35,7 +39,11 @@ public class CancelFavoriteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		FavoriteBean favoriteBean = BeansBuilder.buildFavoriteBean(request);
+		FavoriteImpl favoriteImpl = new FavoriteImpl();
+		int result = favoriteImpl.delete(favoriteBean.getFavorite_id());
+		response.getWriter().print(result);
+		response.getWriter().close();
 	}
 
 }
