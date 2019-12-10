@@ -2,6 +2,7 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 import com.fishinwater.situp.beans.PlanBean;
@@ -18,16 +19,17 @@ public class PlanDao implements BaseDAO<PlanBean> {
 		Connection con= null;
 		PreparedStatement sta = null;
 		try {
-			String sql = "INSERT INTO plan () VALUES(?,?,?,?,?,?)";
+			String sql = "INSERT INTO plan () VALUES(?,?,?,?,?,?,?)";
 			
 			con = com.fishinwater.situp.utils.JDBCUtils.getInstance().getConnection();
 			sta = con.prepareStatement(sql);
 			sta.setString(1, planBean.getPlan_id());
 			sta.setString(2, planBean.getPlan_title());
 			sta.setString(3, planBean.getPlan_content());
-			sta.setString(4, planBean.getPlan_start_date());
-			sta.setString(5, planBean.getPlan_end_date());
-			sta.setString(6, planBean.getPlan_score());
+			sta.setString(4, planBean.getPlan_date());
+			sta.setString(5, planBean.getPlan_score());
+			sta.setString(6, planBean.getPlan_start_date());
+			sta.setString(7, planBean.getPlan_end_date());
 			result = sta.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -43,7 +45,36 @@ public class PlanDao implements BaseDAO<PlanBean> {
 	@Override
 	public PlanBean update(PlanBean obj) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			String sql = "UPDATE plan SET plan_title = '" 
+					+ obj.getPlan_title() 
+					+ "', plan_content = '"
+					+ obj.getPlan_content()
+					+ "', plan_date = '"
+					+ obj.getPlan_date()
+					+ "', plan_score = '"
+					+ obj.getPlan_score()
+					+ "', plan_start_time = '"
+					+ obj.getPlan_start_date()
+					+ "', plan_end_time = '"
+					+ obj.getPlan_end_date()
+					+ "' WHERE plan_id = '" + obj.getPlan_id() + "'";
+			System.out.println(sql);
+			connection = JDBCUtils.getInstance().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(sql);
+		} catch (Exception e) {
+			// TODO: handle exception
+			obj = null;
+			e.printStackTrace();
+		} finally {
+			// TODO: handle finally clause
+			connection = null;
+			statement = null;
+		}
+		return obj;
 	}
 
 	@Override

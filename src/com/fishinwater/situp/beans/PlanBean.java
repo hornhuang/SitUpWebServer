@@ -9,6 +9,7 @@ public class PlanBean {
 	private String plan_content;
 	private String plan_start_date;
 	private String plan_end_date;
+	private String plan_date;
 	private String plan_score;
 	
 	public PlanBean() {
@@ -49,6 +50,12 @@ public class PlanBean {
 	}
 	public void setPlan_score(String plan_score) {
 		this.plan_score = plan_score;
+	}
+	public String getPlan_date() {
+		return plan_date;
+	}
+	public void setPlan_date(String plan_date) {
+		this.plan_date = plan_date;
 	}
 	@Override
 	public String toString() {

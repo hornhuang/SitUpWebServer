@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.model.PlanImpl;
 import com.fishinwater.situp.utils.BeansBuilder;
-import com.google.gson.Gson;
 
 @WebServlet("/AddPlan")
 public class AddPlanServlet extends HttpServlet {
@@ -47,24 +46,9 @@ public class AddPlanServlet extends HttpServlet {
 		PlanBean planBean = BeansBuilder.buildPlanBean(request);
 		PlanImpl planImpl = new PlanImpl();
 
-		int result = 0;
-		if (planImpl.add(planBean) == 1) {
-			result = 1;
-
-		} else {
-			result = 0;
-		}
-
-		Gson gson = new Gson();
-		String json = gson.toJson(result);
-		try {
-			response.getWriter().println(json);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			response.getWriter().close();
-		}
+		int result = planImpl.add(planBean);
+		response.getWriter().println(result);
+		response.getWriter().close();
 	}
 	
 	

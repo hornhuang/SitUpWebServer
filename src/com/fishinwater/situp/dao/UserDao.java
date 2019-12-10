@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.UserBean;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
-import com.sun.crypto.provider.RSACipher;
 
 public class UserDao implements BaseDAO<UserBean> {
 
@@ -61,7 +59,6 @@ public class UserDao implements BaseDAO<UserBean> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 			// TODO: handle exception
 		} finally {
 			JDBCUtils.close(con, sta);

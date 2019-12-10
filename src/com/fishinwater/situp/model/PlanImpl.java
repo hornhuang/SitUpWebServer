@@ -11,12 +11,9 @@ public class PlanImpl implements IPlan<PlanBean> {
 	@Override
 	public int add(PlanBean plan) {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		int result = 0;
 		PlanBean par_plan  = plan;
 		PlanDao dao = new PlanDao();
-		result = dao.add(par_plan);
-		return result;
+		return dao.add(par_plan);
 	}
 
 	@Override
@@ -28,7 +25,9 @@ public class PlanImpl implements IPlan<PlanBean> {
 	@Override
 	public PlanBean update(PlanBean plan) {
 		// TODO Auto-generated method stub
-		return null;
+		PlanDao planDao = new PlanDao();
+		PlanBean planBean = planDao.update(plan);
+		return planBean;
 	}
 
 	@Override

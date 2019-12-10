@@ -23,6 +23,7 @@ public class BeansBuilder {
 		String plan_content = request.getParameter("plan_content");
 		String plan_start_date = request.getParameter("plan_start_date");
 		String plan_end_date = request.getParameter("plan_end_date");
+		String plan_date = request.getParameter("plan_date");
 		String plan_score = request.getParameter("plan_score");
 
 		PlanBean planBean = new PlanBean();
@@ -41,6 +42,7 @@ public class BeansBuilder {
 		planBean.setPlan_content(plan_content);
 		planBean.setPlan_start_date(plan_start_date);
 		planBean.setPlan_end_date(plan_end_date);
+		planBean.setPlan_date(plan_date);
 		System.out.println(planBean.toString());
 		return planBean;
 	}
