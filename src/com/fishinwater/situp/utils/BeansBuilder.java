@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fishinwater.situp.beans.FavoriteBean;
+import com.fishinwater.situp.beans.LikeBean;
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.PostBean;
 import com.fishinwater.situp.beans.UserBean;
@@ -76,6 +78,12 @@ public class BeansBuilder {
 		return user;
 	}
 	
+	/**
+	 * PostBean Builder
+	 * 
+	 * @param request
+	 * @return
+	 */
 	public static PostBean buildPostBean(HttpServletRequest request) {
 		PostBean postBean = new PostBean();
 		// user_id=qwe&post_title=qwe&post_content=qwe&post_date=q-w-e
@@ -88,6 +96,40 @@ public class BeansBuilder {
 			postBean.setPost_id(request.getParameter("post_id"));
 		}
 		return postBean; 
+	}
+	
+	/**
+	 * LikeBean Builder
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static LikeBean buildLikeBean(HttpServletRequest request) {
+		LikeBean likeBean = new LikeBean();
+		likeBean.setLike_id(UUID.randomUUID().toString());
+		likeBean.setPost_id(request.getParameter("post_id"));
+		likeBean.setUser_id(request.getParameter("user_id"));
+		if (request.getParameter("like_id") != null && request.getParameter("like_id").length() != 0) {
+			likeBean.setLike_id(request.getParameter("like_id"));
+		}
+		return likeBean;
+	}
+	
+	/**
+	 * FavoriteBean Builder
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static FavoriteBean buildFavoriteBean(HttpServletRequest request) {
+		FavoriteBean favoriteBean = new FavoriteBean();
+		favoriteBean.setFavorite_id(UUID.randomUUID().toString());
+		favoriteBean.setPost_id(request.getParameter("post_id"));
+		favoriteBean.setUser_id(request.getParameter("user_id"));
+		if (request.getParameter("favorite_id") != null && request.getParameter("favorite_id").length() != 0) {
+			favoriteBean.setFavorite_id(request.getParameter("favorite_id"));
+		}
+		return favoriteBean;
 	}
 
 }

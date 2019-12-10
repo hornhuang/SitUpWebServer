@@ -1,6 +1,8 @@
 package com.fishinwater.situp.beans;
 
 public class FavoriteBean {
+	
+	private String favorite_id;
 
 	private String post_id;
 	
@@ -8,6 +10,14 @@ public class FavoriteBean {
 	
 	public FavoriteBean() {
 		super();
+	}
+
+	public String getFavorite_id() {
+		return favorite_id;
+	}
+
+	public void setFavorite_id(String favorite_id) {
+		this.favorite_id = favorite_id;
 	}
 
 	public String getPost_id() {

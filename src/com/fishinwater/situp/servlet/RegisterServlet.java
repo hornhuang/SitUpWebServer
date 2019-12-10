@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fishinwater.situp.beans.UserBean;
 import com.fishinwater.situp.model.UserImpl;
-import com.google.gson.Gson;
 
 /**
  * Servlet implementation class RegisterServlet

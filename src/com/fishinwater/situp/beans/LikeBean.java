@@ -2,12 +2,22 @@ package com.fishinwater.situp.beans;
 
 public class LikeBean {
 	
+	private String like_id;
+	
 	private String user_id;
 	
 	private String post_id;
 
 	public LikeBean() {
 		super();
+	}
+
+	public String getLike_id() {
+		return like_id;
+	}
+
+	public void setLike_id(String like_id) {
+		this.like_id = like_id;
 	}
 
 	public String getUser_id() {
