@@ -6,7 +6,6 @@ import com.fishinwater.situp.utils.DaoEnum;
 
 public interface BaseDAO<T> {
 	
-
 	public int add(T obj);
 
 	public T update(T obj);

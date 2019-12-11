@@ -1,34 +1,28 @@
 package com.fishinwater.situp.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fishinwater.situp.beans.DayBean;
-import com.fishinwater.situp.beans.PlanBean;
-import com.fishinwater.situp.beans.UserBean;
-import com.fishinwater.situp.model.DayImpl;
-import com.fishinwater.situp.model.PlanImpl;
-import com.fishinwater.situp.utils.BeansBuilder;
+import com.alibaba.fastjson.JSONObject;
+import com.fishinwater.situp.beans.PostBean;
+import com.fishinwater.situp.model.PostImpl;
 import com.fishinwater.situp.utils.JsonUtils;
-import com.google.gson.Gson;
 
 /**
- * Servlet implementation class GetUserPlansServlet
+ * Servlet implementation class getPostServlet
  */
-@WebServlet("/getday")
-public class GetDayServlet extends HttpServlet {
+@WebServlet("/getpost")
+public class getPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetDayServlet() {
+    public getPostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,16 +40,15 @@ public class GetDayServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DayImpl dayImpl = new DayImpl();
-		DayBean dayBean = BeansBuilder.buildDayBean(request);
-		DayBean resultBean = dayImpl.getDayByUserAndDate(request.getParameter("user_id"), dayBean.getDay_date());
+		String post_id = request.getParameter("post_id");
+		PostImpl postImpl = new PostImpl();
+		PostBean result = postImpl.getByPostId(post_id);
 		
-		String json = "";
-		if (resultBean != null) {
-			Gson gson = new Gson();
-			json = gson.toJson(resultBean);
+		String jString = "";
+		if (result != null) {
+			jString = JSONObject.toJSONString(result);
 		}
-		response.getWriter().print(json);
+		response.getWriter().print(jString);
 		response.getWriter().close();
 	}
 

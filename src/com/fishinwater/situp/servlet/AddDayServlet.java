@@ -1,8 +1,6 @@
 package com.fishinwater.situp.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,25 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fishinwater.situp.beans.DayBean;
-import com.fishinwater.situp.beans.PlanBean;
-import com.fishinwater.situp.beans.UserBean;
 import com.fishinwater.situp.model.DayImpl;
-import com.fishinwater.situp.model.PlanImpl;
 import com.fishinwater.situp.utils.BeansBuilder;
-import com.fishinwater.situp.utils.JsonUtils;
-import com.google.gson.Gson;
 
 /**
- * Servlet implementation class GetUserPlansServlet
+ * Servlet implementation class AddDayServlet
  */
-@WebServlet("/getday")
-public class GetDayServlet extends HttpServlet {
+@WebServlet("/addday")
+public class AddDayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetDayServlet() {
+    public AddDayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,14 +41,9 @@ public class GetDayServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		DayImpl dayImpl = new DayImpl();
 		DayBean dayBean = BeansBuilder.buildDayBean(request);
-		DayBean resultBean = dayImpl.getDayByUserAndDate(request.getParameter("user_id"), dayBean.getDay_date());
+		int result = dayImpl.add(dayBean);
 		
-		String json = "";
-		if (resultBean != null) {
-			Gson gson = new Gson();
-			json = gson.toJson(resultBean);
-		}
-		response.getWriter().print(json);
+		response.getWriter().print(result);
 		response.getWriter().close();
 	}
 

@@ -1,14 +1,18 @@
 package com.fishinwater.situp.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.fishinwater.situp.beans.FavoriteBean;
 import com.fishinwater.situp.beans.CollectionBean;
+import com.fishinwater.situp.beans.DayBean;
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.PostBean;
 import com.fishinwater.situp.beans.UserBean;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class BeansBuilder {
 	
@@ -126,10 +130,32 @@ public class BeansBuilder {
 		favoriteBean.setFavorite_id(UUID.randomUUID().toString());
 		favoriteBean.setPost_id(request.getParameter("post_id"));
 		favoriteBean.setUser_id(request.getParameter("user_id"));
+		
 		if (request.getParameter("favorite_id") != null && request.getParameter("favorite_id").length() != 0) {
 			favoriteBean.setFavorite_id(request.getParameter("favorite_id"));
 		}
 		return favoriteBean;
+	}
+	
+	public static DayBean buildDayBean(HttpServletRequest request) {
+		DayBean dayBean = new DayBean();
+		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		dayBean.setDay_id(UUID.randomUUID().toString());
+		dayBean.setUser_id(request.getParameter("user_id"));
+		dayBean.setDay_date(sFormat.format(new Date()));
+		dayBean.setDay_plans(request.getParameter("day_plans"));
+		
+		if (request.getParameter("day_date") != null && request.getParameter("day_date").length() != 0) {
+			dayBean.setDay_id(request.getParameter("day_date"));
+		}
+		if (request.getParameter("day_id") != null && request.getParameter("day_id").length() != 0) {
+			dayBean.setDay_id(request.getParameter("day_id"));
+		}
+		if (dayBean.getDay_plans() == null) {
+			dayBean.setDay_plans("");
+		}
+		return dayBean;
 	}
 
 }

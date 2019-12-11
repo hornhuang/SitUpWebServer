@@ -9,26 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fishinwater.situp.beans.DayBean;
-import com.fishinwater.situp.beans.PlanBean;
-import com.fishinwater.situp.beans.UserBean;
-import com.fishinwater.situp.model.DayImpl;
-import com.fishinwater.situp.model.PlanImpl;
-import com.fishinwater.situp.utils.BeansBuilder;
+import com.fishinwater.situp.model.PostImpl;
 import com.fishinwater.situp.utils.JsonUtils;
-import com.google.gson.Gson;
 
 /**
- * Servlet implementation class GetUserPlansServlet
+ * Servlet implementation class getUserPostsServlet
  */
-@WebServlet("/getday")
-public class GetDayServlet extends HttpServlet {
+@WebServlet("/getuserposts")
+public class getUserPostsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetDayServlet() {
+    public getUserPostsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,16 +40,12 @@ public class GetDayServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DayImpl dayImpl = new DayImpl();
-		DayBean dayBean = BeansBuilder.buildDayBean(request);
-		DayBean resultBean = dayImpl.getDayByUserAndDate(request.getParameter("user_id"), dayBean.getDay_date());
+		String user_id = request.getParameter("user_id");
+		PostImpl postImpl = new PostImpl();
+		List<String> list = postImpl.getByUserId(user_id);
+		String jString = JsonUtils.arrayToJsonStr(list);
 		
-		String json = "";
-		if (resultBean != null) {
-			Gson gson = new Gson();
-			json = gson.toJson(resultBean);
-		}
-		response.getWriter().print(json);
+		response.getWriter().print(jString);
 		response.getWriter().close();
 	}
 
