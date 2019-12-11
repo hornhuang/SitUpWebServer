@@ -51,8 +51,8 @@ public class PlanImpl implements IPlan<PlanBean> {
 	public String queryById(String plan_id) {
 		// TODO Auto-generated method stub
 		PlanDao planDao = new PlanDao();
-		PlanBean planBean = planDao.
-		String jString = JsonUtils.objToString(planDao);
+		PlanBean planBean = planDao.queryByPlanId(plan_id);
+		String jString = JsonUtils.objToString(planBean);
 		return jString;
 	}
 

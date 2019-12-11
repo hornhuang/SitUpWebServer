@@ -38,7 +38,9 @@ public class GetPlanServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String plan_id = request.getParameter("plan_id");
-		String jString = new PlanImpl().
+		String jString = new PlanImpl().queryById(plan_id);
+		response.getWriter().print(jString);
+		response.getWriter().close();
 	}
 
 }

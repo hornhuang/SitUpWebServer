@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fishinwater.situp.beans.DayBean;
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.UserBean;
 import com.fishinwater.situp.dao.base.IBaseDAO;
@@ -158,6 +159,40 @@ public class PlanDao implements IBaseDAO<PlanBean>, IPlanDao<PlanBean> {
 			rs = null;
 		}
 		return planList;
+	}
+
+	@Override
+	public PlanBean queryByPlanId(String plan_id) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		PlanBean planBean = null;
+
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select * from plan where plan_id = '" + plan_id + "'";
+			rs = sta.executeQuery(sql);
+			while (rs.next()) {
+				planBean = new PlanBean();
+				planBean.setPlan_id(rs.getString(1));
+				planBean.setPlan_title(rs.getString(2));
+				planBean.setPlan_content(rs.getString(3));
+				planBean.setPlan_date(rs.getString(4));
+				planBean.setPlan_score(rs.getString(5));
+				planBean.setPlan_start_date(rs.getString(6));
+				planBean.setPlan_end_date(rs.getString(7));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		return planBean;
 	}
 
 }
