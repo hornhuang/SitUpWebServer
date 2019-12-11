@@ -8,14 +8,14 @@ import java.util.List;
 
 import com.fishinwater.situp.beans.DayBean;
 import com.fishinwater.situp.beans.UserBean;
-import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.dao.base.IBaseDAO;
 import com.fishinwater.situp.dao.base.IDayDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.model.base.IDay;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class DayDao implements BaseDAO<DayBean>, IDayDao, IDay{
+public class DayDao implements IBaseDAO<DayBean>, IDayDao, IDay{
 
 	@Override
 	public DayBean getDayById(String day_id) {

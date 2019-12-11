@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fishinwater.situp.utils.DaoEnum;
 
-public interface BaseDAO<T> {
+public interface IBaseDAO<T> {
 	
 	public int add(T obj);
 

@@ -2,16 +2,20 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fishinwater.situp.beans.CollectionBean;
-import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.beans.FavoriteBean;
+import com.fishinwater.situp.dao.base.IBaseDAO;
+import com.fishinwater.situp.dao.base.ICollectionDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class CollectionDao implements BaseDAO<CollectionBean>{
+public class CollectionDao implements IBaseDAO<CollectionBean>, ICollectionDao<CollectionBean>{
 
 	@Override
 	public int add(CollectionBean obj) {
@@ -84,6 +88,36 @@ public class CollectionDao implements BaseDAO<CollectionBean>{
 	public long getCount(String where) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<CollectionBean> queryCollectionsByUserId(String user_id) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		List<CollectionBean> collectionList = new ArrayList<CollectionBean>();
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select * from collection where user_id = '" + user_id + "'";
+			rs = sta.executeQuery(sql);
+			while (rs.next()) {
+				CollectionBean collection = new CollectionBean();
+				collection.setPost_id(rs.getString(1));
+				collection.setUser_id(rs.getString(2));
+				collection.setCollection_id(rs.getString(3));
+				collectionList.add(collection);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		return collectionList;
 	}
 
 }

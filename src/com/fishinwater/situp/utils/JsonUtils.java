@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 
 public class JsonUtils {
 
@@ -19,6 +20,12 @@ public class JsonUtils {
 		List<T> list = new ArrayList<T>();
 		list = JSONObject.parseArray(jString, clazz);
 		return list;
+	}
+	
+	public static <T> String objToString(T obj) {
+		Gson gson = new Gson();
+		String jString = gson.toJson(obj).toString();
+		return jString;
 	}
 	
 }

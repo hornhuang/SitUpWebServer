@@ -2,16 +2,20 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fishinwater.situp.beans.FavoriteBean;
-import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.beans.PlanBean;
+import com.fishinwater.situp.dao.base.IBaseDAO;
+import com.fishinwater.situp.dao.base.IFavoriteDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class FavoriteDao implements BaseDAO<FavoriteBean>{
+public class FavoriteDao implements IBaseDAO<FavoriteBean>, IFavoriteDao<FavoriteBean>{
 
 	@Override
 	public int add(FavoriteBean obj) {
@@ -79,6 +83,36 @@ public class FavoriteDao implements BaseDAO<FavoriteBean>{
 	public long getCount(String where) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<FavoriteBean> queByUserId(String user_id) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		List<FavoriteBean> favoriteList = new ArrayList<FavoriteBean>();
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select * from favorite where user_id = '" + user_id + "'";
+			rs = sta.executeQuery(sql);
+			while (rs.next()) {
+				FavoriteBean favorite = new FavoriteBean();
+				favorite.setPost_id(rs.getString(1));
+				favorite.setUser_id(rs.getString(2));
+				favorite.setFavorite_id(rs.getString(3));
+				favoriteList.add(favorite);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		return favoriteList;
 	}
 
 }

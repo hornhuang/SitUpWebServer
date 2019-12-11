@@ -3,6 +3,7 @@ package com.fishinwater.situp.model;
 import com.fishinwater.situp.beans.CollectionBean;
 import com.fishinwater.situp.dao.CollectionDao;
 import com.fishinwater.situp.model.base.ICollection;
+import com.fishinwater.situp.utils.JsonUtils;
 
 public class CollectionImpl implements ICollection<CollectionBean>{
 
@@ -18,6 +19,14 @@ public class CollectionImpl implements ICollection<CollectionBean>{
 		// TODO Auto-generated method stub
 		CollectionDao collectionDao = new CollectionDao();
 		return collectionDao.delete(id);
+	}
+
+	@Override
+	public String queryCollectionsByUserId(String user_id) {
+		// TODO Auto-generated method stub
+		CollectionDao collectionDao = new CollectionDao();
+		String jString = JsonUtils.arrayToJsonStr(collectionDao.queryCollectionsByUserId(user_id));
+		return jString;
 	}
 
 }

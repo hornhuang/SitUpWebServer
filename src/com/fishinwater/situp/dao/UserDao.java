@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fishinwater.situp.beans.UserBean;
-import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.dao.base.IBaseDAO;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class UserDao implements BaseDAO<UserBean> {
+public class UserDao implements IBaseDAO<UserBean> {
 
 	public int add(UserBean obj) {
 		int result = 0;

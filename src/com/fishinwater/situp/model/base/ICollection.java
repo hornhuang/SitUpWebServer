@@ -7,5 +7,7 @@ public interface ICollection<T extends CollectionBean> {
 	int add(T t);
 	
 	int delete(String id);
+	
+	String queryCollectionsByUserId(String user_id);
 
 }

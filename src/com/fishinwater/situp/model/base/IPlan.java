@@ -17,5 +17,7 @@ public interface IPlan<T extends PlanBean> {
 	List<T> queryAll(T plan);
 	
 	List<T> queryByUser(UserBean user, String date);
+	
+	String queryById(String plan_id);
 
 }

@@ -9,13 +9,13 @@ import java.util.List;
 
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.PostBean;
-import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.dao.base.IBaseDAO;
 import com.fishinwater.situp.dao.base.IPostDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class PostDao implements BaseDAO<PostBean>, IPostDao<PostBean>{
+public class PostDao implements IBaseDAO<PostBean>, IPostDao<PostBean>{
 
 	@Override
 	public int add(PostBean obj) {

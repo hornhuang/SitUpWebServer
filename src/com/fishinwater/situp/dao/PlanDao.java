@@ -9,13 +9,13 @@ import java.util.List;
 
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.UserBean;
-import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.dao.base.IBaseDAO;
 import com.fishinwater.situp.dao.base.IPlanDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class PlanDao implements BaseDAO<PlanBean>, IPlanDao<PlanBean> {
+public class PlanDao implements IBaseDAO<PlanBean>, IPlanDao<PlanBean> {
 
 	@Override
 	public int add(PlanBean obj) {

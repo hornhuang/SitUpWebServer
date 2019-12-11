@@ -6,6 +6,7 @@ import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.beans.UserBean;
 import com.fishinwater.situp.dao.PlanDao;
 import com.fishinwater.situp.model.base.IPlan;
+import com.fishinwater.situp.utils.JsonUtils;
 
 public class PlanImpl implements IPlan<PlanBean> {
 
@@ -44,6 +45,15 @@ public class PlanImpl implements IPlan<PlanBean> {
 		PlanDao planDao = new PlanDao();
 		planDao.getPlansByDate(user, date);
 		return null;
+	}
+
+	@Override
+	public String queryById(String plan_id) {
+		// TODO Auto-generated method stub
+		PlanDao planDao = new PlanDao();
+		PlanBean planBean = planDao.
+		String jString = JsonUtils.objToString(planDao);
+		return jString;
 	}
 
 }
