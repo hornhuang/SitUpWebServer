@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import com.fishinwater.situp.beans.FavoriteBean;
+import com.fishinwater.situp.dao.base.BaseDAO;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;

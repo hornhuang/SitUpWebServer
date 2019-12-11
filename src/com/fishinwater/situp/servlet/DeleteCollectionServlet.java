@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fishinwater.situp.beans.PostBean;
-import com.fishinwater.situp.model.PostImpl;
+import com.fishinwater.situp.beans.CollectionBean;
+import com.fishinwater.situp.model.CollectionImpl;
 import com.fishinwater.situp.utils.BeansBuilder;
 
 /**
- * Servlet implementation class PublishServlet
+ * Servlet implementation class CancelCollectionServlet
  */
-@WebServlet("/publishpost")
-public class PublishPostServlet extends HttpServlet {
+@WebServlet("/deletecollection")
+public class DeleteCollectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PublishPostServlet() {
+    public DeleteCollectionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,9 +39,9 @@ public class PublishPostServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PostBean postBean = BeansBuilder.buildPostBean(request);
-		PostImpl postImpl = new PostImpl();
-		int result = postImpl.add(postBean);
+		CollectionBean collectionBean = BeansBuilder.buildCollectionBean(request);
+		CollectionImpl collectionImpl = new CollectionImpl();
+		int result = collectionImpl.delete(collectionBean.getCollection_id());
 		response.getWriter().print(result);
 		response.getWriter().close();
 	}

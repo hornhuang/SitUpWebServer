@@ -1,4 +1,4 @@
-package com.fishinwater.situp.dao;
+package com.fishinwater.situp.dao.base;
 
 import java.util.List;
 

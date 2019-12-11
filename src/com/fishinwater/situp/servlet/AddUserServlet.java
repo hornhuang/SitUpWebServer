@@ -13,8 +13,8 @@ import com.fishinwater.situp.model.UserImpl;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/regist")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/adduser")
+public class AddUserServlet extends HttpServlet {
 	
 	// http://localhost:8080/SitUpWebServer/regist?username=qwe&password=qwe
 	
@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RegisterServlet() {
+	public AddUserServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -54,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
 		userbean.setUser_password(pswd);
 		UserImpl userdao = new UserImpl();
 		int result = userdao.register(userbean);
-		
+		System.out.println("---" + result + "----");
 		try {
 			response.getWriter().println(result);
 

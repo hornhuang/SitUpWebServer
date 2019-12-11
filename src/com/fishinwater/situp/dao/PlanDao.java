@@ -2,15 +2,20 @@ package com.fishinwater.situp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fishinwater.situp.beans.PlanBean;
+import com.fishinwater.situp.beans.UserBean;
+import com.fishinwater.situp.dao.base.BaseDAO;
+import com.fishinwater.situp.dao.base.IPlanDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
-public class PlanDao implements BaseDAO<PlanBean> {
+public class PlanDao implements BaseDAO<PlanBean>, IPlanDao<PlanBean> {
 
 	@Override
 	public int add(PlanBean obj) {
@@ -118,6 +123,41 @@ public class PlanDao implements BaseDAO<PlanBean> {
 	public long getCount(String where) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<PlanBean> getPlansByDate(UserBean user, String date) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		List<PlanBean> planList = new ArrayList<PlanBean>();
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select * from plan where user_id = '" + user.getUser_id() + "' and plan_date = '" + date + "'";
+			rs = sta.executeQuery(sql);
+			if (rs.next()) {
+				PlanBean plan = new PlanBean();
+				plan.setPlan_id(rs.getString(1));
+				plan.setPlan_title(rs.getString(2));
+				plan.setPlan_content(rs.getString(3));
+				plan.setPlan_date(rs.getString(4));
+				plan.setPlan_score(rs.getString(5));
+				plan.setPlan_start_date(rs.getString(6));
+				plan.setPlan_end_date(rs.getString(7));
+				planList.add(plan);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		return planList;
 	}
 
 }

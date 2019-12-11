@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fishinwater.situp.beans.UserBean;
+import com.fishinwater.situp.dao.base.BaseDAO;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JDBCUtils;
 
@@ -115,7 +116,9 @@ public class UserDao implements BaseDAO<UserBean> {
 			System.out.println(e);
 			// TODO: handle exception
 		} finally {
-			// JDBCUtils.close(con, sta, rs);
+			con = null;
+			sta = null;
+			rs = null;
 		}
 		return user;
 	}
