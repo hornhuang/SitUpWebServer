@@ -34,7 +34,7 @@ public class JDBCUtils {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://127.0.0.1:3306/situp?serverTimezone=GMT%2B8";
 			String username = "root";
-			String password = "qaz123456";
+			String password = "";
 			connection = DriverManager.getConnection(url, username, password);
 		} catch (Exception ex) {
 			// TODO: handle exception
