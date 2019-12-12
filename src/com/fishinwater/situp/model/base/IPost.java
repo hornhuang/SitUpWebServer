@@ -13,6 +13,8 @@ public interface IPost<T extends PostBean> {
 	List<String> getByUserId(String user_id);
 	
 	T getByPostId(String post_id);
+	
+	String getPostsByPage(String page);
 
 }
 

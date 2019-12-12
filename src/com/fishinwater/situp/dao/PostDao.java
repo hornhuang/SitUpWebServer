@@ -144,4 +144,35 @@ public class PostDao implements IBaseDAO<PostBean>, IPostDao<PostBean>{
 		return post;
 	}
 
+	@Override
+	public List<String> getPostsByPageServlet(int page) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		List<String> postList = new ArrayList<String>();
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select post_id from post";
+			rs = sta.executeQuery(sql);
+			rs.last();
+			int totalRows = rs.getRow();
+			if (page * 10 <= totalRows) {
+				rs.absolute(page * 10);
+				while (rs.next() && rs.getRow() < ( page + 1 ) * 10) {
+					postList.add(rs.getString(1));
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		return postList;
+	}
+
 }

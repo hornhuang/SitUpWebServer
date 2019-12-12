@@ -1,10 +1,12 @@
 package com.fishinwater.situp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fishinwater.situp.beans.PostBean;
 import com.fishinwater.situp.dao.PostDao;
 import com.fishinwater.situp.model.base.IPost;
+import com.fishinwater.situp.utils.JsonUtils;
 
 public class PostImpl implements IPost<PostBean>{
 
@@ -34,6 +36,15 @@ public class PostImpl implements IPost<PostBean>{
 		// TODO Auto-generated method stub
 		PostDao postDao = new PostDao();
 		return postDao.getPostById(post_id);
+	}
+
+	@Override
+	public String getPostsByPage(String page) {
+		// TODO Auto-generated method stub
+		PostDao postDao = new PostDao();
+		List<String> list = postDao.getPostsByPageServlet(Integer.parseInt(page));
+		String jString = JsonUtils.arrayToJsonStr(list);
+		return jString;
 	}
 
 }
