@@ -1,2 +1,2 @@
-*.java linguist-language=java
-*.md linguist-language=html
+*.java linguist-language=servlet
+*.md linguist-language=servlet
