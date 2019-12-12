@@ -9,9 +9,7 @@ SitUp app web server
 - 本站对外开放所有 api 
 
 
-
-![API](https://github.com/FishInWater-1999/SitUpWebServer/blob/master/WebContent/drawable/thVCGWHGMT.jpg)
-
+<div align=center><img src="https://github.com/FishInWater-1999/SitUpWebServer/blob/master/WebContent/drawable/thVCGWHGMT.jpg"/></div>
 
 
 ## 用户
