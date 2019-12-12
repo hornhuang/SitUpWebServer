@@ -137,6 +137,11 @@ public class BeansBuilder {
 		return favoriteBean;
 	}
 	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
 	public static DayBean buildDayBean(HttpServletRequest request) {
 		DayBean dayBean = new DayBean();
 		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -147,7 +152,7 @@ public class BeansBuilder {
 		dayBean.setDay_plans(request.getParameter("day_plans"));
 		
 		if (request.getParameter("day_date") != null && request.getParameter("day_date").length() != 0) {
-			dayBean.setDay_id(request.getParameter("day_date"));
+			dayBean.setDay_date(request.getParameter("day_date"));
 		}
 		if (request.getParameter("day_id") != null && request.getParameter("day_id").length() != 0) {
 			dayBean.setDay_id(request.getParameter("day_id"));

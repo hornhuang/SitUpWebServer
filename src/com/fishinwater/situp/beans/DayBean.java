@@ -34,7 +34,10 @@ public class DayBean {
 	public void setDay_date(String day_date) {
 		this.day_date = day_date;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "DayBean [day_id=" + day_id + ", user_id=" + user_id + ", day_plans=" + day_plans + ", day_date="
+				+ day_date + "]";
+	}
 	
 }

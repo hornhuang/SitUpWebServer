@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+import java.util.UUID;
 
 import com.fishinwater.situp.beans.DayBean;
 import com.fishinwater.situp.beans.UserBean;
@@ -52,8 +53,24 @@ public class DayDao implements IBaseDAO<DayBean>, IDayDao, IDay{
 
 	@Override
 	public DayBean update(DayBean obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		Statement sta = null;
+		try {
+			System.out.println(obj.toString());
+			String sql = "UPDATE day SET day_plans = '" + obj.getDay_plans() + 
+					"' WHERE day_id = '" + obj.getDay_id() + "'";
+			System.out.println(sql);
+			con = JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			sta.execute(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+		}
+		return obj;
 	}
 
 	@Override
@@ -103,7 +120,6 @@ public class DayDao implements IBaseDAO<DayBean>, IDayDao, IDay{
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 			// TODO: handle exception
 		} finally {
 			con = null;

@@ -23,7 +23,8 @@ public class DayImpl implements IBaseModel<DayBean>, IDay{
 	@Override
 	public DayBean update(DayBean plan) {
 		// TODO Auto-generated method stub
-		return null;
+		DayDao dayDao = new DayDao();
+		return dayDao.update(plan);
 	}
 
 	@Override
