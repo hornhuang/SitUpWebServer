@@ -1,5 +1,5 @@
 # SitUpWebServer
-SitUp app web server
+- SitUp app web server，为 SitUp App 提供各种网络接口
 
 
 # 本站对外接口
