@@ -208,7 +208,7 @@ http://localhost:8080/SitUpWebServer/updateday?day_id=2486c3dd-55d8-4666-8444-ea
 ```
 http://localhost:8080/SitUpWebServer/getday?user_id=85bbf54c-459a-46b7-a0bf-8c3a5a00b888&day_date=12-12-12
 
-返回 int
+返回 DayBean JSON
 ```
 
 
