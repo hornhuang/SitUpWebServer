@@ -7,6 +7,7 @@ import com.fishinwater.situp.dao.UserDao;
 import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.model.base.IUser;
 import com.fishinwater.situp.utils.DaoEnum;
+import com.fishinwater.situp.utils.JsonUtils;
 
 public class UserImpl implements IUser<UserBean> {
 
@@ -64,6 +65,14 @@ public class UserImpl implements IUser<UserBean> {
 			result=dao.update(user);
 		}
 		return result;
+	}
+
+	@Override
+	public String getUserById(String user_id) {
+		// TODO Auto-generated method stub
+		UserDao userDao = new UserDao();
+		UserBean user = userDao.getBy(DaoEnum.ID, user_id);
+		return JsonUtils.objToString(user);
 	}
 
 }

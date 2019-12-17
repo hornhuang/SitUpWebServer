@@ -29,4 +29,12 @@ public class CollectionImpl implements ICollection<CollectionBean>{
 		return jString;
 	}
 
+	@Override
+	public int judgeCollectionIsExist(String post_id, String user_id) {
+		// TODO Auto-generated method stub
+		CollectionDao collectionDao = new CollectionDao();
+		int result = collectionDao.queryCollectionByUerIdAndPostId(user_id, post_id);
+		return result;
+	}
+
 }

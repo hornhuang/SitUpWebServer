@@ -14,14 +14,14 @@ import com.fishinwater.situp.utils.BeansBuilder;
 /**
  * Servlet implementation class CancelCollectionServlet
  */
-@WebServlet("/deletecollection")
-public class DeleteCollectionServlet extends HttpServlet {
+@WebServlet("/ispostusercolleted")
+public class GetIfPostCollectedByUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCollectionServlet() {
+    public GetIfPostCollectedByUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,9 +39,10 @@ public class DeleteCollectionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		CollectionBean collectionBean = BeansBuilder.buildCollectionBean(request);
+		String post_id = request.getParameter("post_id");
+		String user_id = request.getParameter("user_id");
 		CollectionImpl collectionImpl = new CollectionImpl();
-		int result = collectionImpl.delete(collectionBean.getCollection_id());
+		int result = collectionImpl.judgeCollectionIsExist(post_id, user_id);
 		response.getWriter().print(result);
 		response.getWriter().close();
 	}
