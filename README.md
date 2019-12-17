@@ -2,6 +2,7 @@
 - SitUp app web server，为 SitUp App 提供各种网络接口
 
 
+
 # 本站对外接口
 
 - 本站遵循 MIT 开源协议
@@ -9,7 +10,9 @@
 - 本站对外开放所有 api 
 
 
-<div align=center><img src="https://github.com/FishInWater-1999/SitUpWebServer/blob/master/WebContent/drawable/thVCGWHGMT.jpg"/></div>
+
+![API](https://github.com/FishInWater-1999/SitUpWebServer/blob/master/WebContent/drawable/thVCGWHGMT.jpg)
+
 
 
 ## 用户
@@ -36,6 +39,15 @@ http://localhost:8080/SitUpWebServer/login?username=qwe&password=qwe
 http://localhost:8080/SitUpWebServer/update?user_id=0c68ab94-5af5-43ea-8be4-6bc5c4e29b3e&user_password=123456
 
 返回 UserBean JSON
+```
+
+- 查询
+
+```
+http://localhost:8080/SitUpWebServer/getuser?user_id=80cedc60-5050-450f-9ae7-94ad759ea3e9
+
+返回 UserBean（name introduction） JSON
+	{"user_name":"qweqweqwe","user_introduction":"?????????????"}
 ```
 
 
@@ -130,18 +142,20 @@ http://localhost:8080/SitUpWebServer/getplan?plan_id=33ce2797-ff87-4b12-970c-63c
 
 ## 点赞
 
-- 点赞
+- 点赞/取消点赞
 
 ```
-http://localhost:8080/SitUpWebServer/addfavorite?post_id=qwe&user_id=80cedc60-5050-450f-9ae7-94ad759ea3e9
+http://localhost:8080/SitUpWebServer/addfavorite?post_id=d829bd49-cde2-432d-802a-934ad4ba44a1&user_id=459ca032-b479-4b38-847f-8e649b261c4e
 
 返回 int
+	有则删除，无则收藏
+	设置了索引，保证唯一性
 ```
 
-- 取消点赞
+- 查询用户是否点赞该帖子
 
 ```
-http://localhost:8080/SitUpWebServer/deletefavorite?favorite_id=59e49d1a-7306-4968-8c82-a76c792583b3
+http://localhost:8080/SitUpWebServer/ispostuserfavorited?post_id=d829bd49-cde2-432d-802a-934ad4ba44a1&user_id=459ca032-b479-4b38-847f-8e649b261c4e
 
 返回 int
 ```
@@ -158,23 +172,26 @@ http://localhost:8080/SitUpWebServer/getuserfavorite?user_id=80cedc60-5050-450f-
 
 ## 收藏
 
-- 收藏
+- 收藏/取消收藏
 
 ```
 http://localhost:8080/SitUpWebServer/addcollection?post_id=043fd455-922e-43a1-82b1-4061dae90ff8&user_id=80cedc60-5050-450f-9ae7-94ad759ea3e9
 
-返回 boolean
+返回 int
+	有则删除，无则收藏
+	设置了索引，保证唯一性
 ```
 
-- 取消收藏
+- 查询用户是否收藏该帖子
 
 ```
-http://localhost:8080/SitUpWebServer/deletecollection?collection_id=a214003a-2433-4b04-9f02-fa42cc57bcdd
+http://localhost:8080/SitUpWebServer/ispostusercolleted?post_id=d829bd49-cde2-432d-802a-934ad4ba44a1&user_id=459ca032-b479-4b38-847f-8e649b261c4e
 
-返回 boolean
+返回 int
+	1 存在  -1 不存在
 ```
 
-- 查询用户所有收藏
+- 查询用户所有收藏post
 
 ```
 http://localhost:8080/SitUpWebServer/getusercollections?user_id=80cedc60-5050-450f-9ae7-94ad759ea3e9
@@ -206,9 +223,9 @@ http://localhost:8080/SitUpWebServer/updateday?day_id=2486c3dd-55d8-4666-8444-ea
 - 查询
 
 ```
-http://localhost:8080/SitUpWebServer/getday?user_id=85bbf54c-459a-46b7-a0bf-8c3a5a00b888&day_date=12-12-12
+http://localhost:8080/SitUpWebServer/getday?user_id=85bbf54c-459a-46b7-a0bf-8c3a5a00b888&day_id=2486c3dd-55d8-4666-8444-eae2f44051d1
 
-返回 DayBean JSON
+返回 int
 ```
 
 
@@ -242,22 +259,3 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-
-
-
-# 项目地址
-
-- [SitUpWebServer](https://github.com/FishInWater-1999/SitUpWebServer)
-
-
-
-# MIT License
-
-```
-Copyright (c) 2019-12-10 FishInWater-1999
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
