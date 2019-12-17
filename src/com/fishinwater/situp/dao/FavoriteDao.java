@@ -34,6 +34,7 @@ public class FavoriteDao implements IBaseDAO<FavoriteBean>, IFavoriteDao<Favorit
 			result = IBaseModel.SUCCEED;
 		} catch (Exception e) {
 			// TODO: handle exception
+			result = delete(obj);
 			e.printStackTrace();
 		}
 		return result;
@@ -113,6 +114,33 @@ public class FavoriteDao implements IBaseDAO<FavoriteBean>, IFavoriteDao<Favorit
 			rs = null;
 		}
 		return favoriteList;
+	}
+
+	@Override
+	public int queryCollectionByUerIdAndPostId(String user_id, String post_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(FavoriteBean obj) {
+		int result = IBaseModel.FAILED;
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			String sql = "DELETE FROM favorite WHERE post_id = '" + obj.getPost_id() + "' and user_id = '" + obj.getUser_id() + "'";
+			connection = JDBCUtils.getInstance().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(sql);
+			result = IBaseModel.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			connection = null;
+			statement = null;
+		}
+		return result;
 	}
 
 }
