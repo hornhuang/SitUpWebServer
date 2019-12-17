@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fishinwater.situp.beans.CollectionBean;
 import com.fishinwater.situp.beans.FavoriteBean;
 import com.fishinwater.situp.beans.PlanBean;
 import com.fishinwater.situp.dao.base.IBaseDAO;
@@ -117,9 +118,38 @@ public class FavoriteDao implements IBaseDAO<FavoriteBean>, IFavoriteDao<Favorit
 	}
 
 	@Override
-	public int queryCollectionByUerIdAndPostId(String user_id, String post_id) {
+	public int queryFavoritionByUerIdAndPostId(String user_id, String post_id) {
 		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		List<CollectionBean> collectionList = new ArrayList<CollectionBean>();
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select * from favorite where user_id = '" + user_id + "' and post_id = '" + post_id + "'";
+			System.out.println(sql);
+			rs = sta.executeQuery(sql);
+			while (rs.next()) {
+				CollectionBean collection = new CollectionBean();
+				collection.setPost_id(rs.getString(1));
+				collection.setUser_id(rs.getString(2));
+				collection.setCollection_id(rs.getString(3));
+				collectionList.add(collection);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		if (collectionList.size() != 0) {
+			return IBaseModel.SUCCEED;
+		} else {
+			return IBaseModel.FAILED;
+		}
 	}
 
 	@Override

@@ -14,14 +14,14 @@ import com.fishinwater.situp.utils.BeansBuilder;
 /**
  * Servlet implementation class CancelFavoriteServlet
  */
-@WebServlet("/deletefavorite")
-public class DeleteFavoriteServlet extends HttpServlet {
+@WebServlet("/ispostuserfavorited")
+public class GetIfPostFavoritedByUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteFavoriteServlet() {
+    public GetIfPostFavoritedByUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,7 +41,7 @@ public class DeleteFavoriteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		FavoriteBean favoriteBean = BeansBuilder.buildFavoriteBean(request);
 		FavoriteImpl favoriteImpl = new FavoriteImpl();
-		int result = favoriteImpl.delete(favoriteBean.getFavorite_id());
+		int result = favoriteImpl.judgeFavoritionIsExist(favoriteBean.getUser_id(), favoriteBean.getPost_id());
 		response.getWriter().print(result);
 		response.getWriter().close();
 	}

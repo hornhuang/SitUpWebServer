@@ -29,4 +29,12 @@ public class FavoriteImpl implements IFavorite<FavoriteBean>{
 		return favoriteDao.queByUserId(user_id);
 	}
 
+	@Override
+	public int judgeFavoritionIsExist(String user_id, String post_id) {
+		// TODO Auto-generated method stub
+		FavoriteDao favoriteDao = new FavoriteDao();
+		int result = favoriteDao.queryFavoritionByUerIdAndPostId(user_id, post_id);
+		return result;
+	}
+
 }

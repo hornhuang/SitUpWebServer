@@ -12,4 +12,6 @@ public interface IFavorite<T extends FavoriteBean> {
 	
 	List<T> queryByUserId(String user_id);
 
+	int judgeFavoritionIsExist(String user_id, String post_id);
+	
 }
