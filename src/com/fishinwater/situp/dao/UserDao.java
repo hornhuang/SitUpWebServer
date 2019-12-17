@@ -90,7 +90,7 @@ public class UserDao implements IBaseDAO<UserBean> {
 			String sql = "";
 			switch (flag) {
 				case ID:
-					sql = "select * from user where user_id = '" + where + "'";
+					sql = "select user_name,user_introduction from user where user_id = '" + where + "'";
 					break;
 				case NAME:
 					sql = "select * from user where user_name = '" + where + "'";
@@ -105,10 +105,15 @@ public class UserDao implements IBaseDAO<UserBean> {
 			rs = sta.executeQuery(sql);
 			if (rs.next()) {
 				user = new UserBean();
-				user.setUser_id(rs.getString(1));
-				user.setUser_name(rs.getString(2));
-				user.setUser_password(rs.getString(3));
-				user.setUser_introduction(rs.getString(4));
+				if (DaoEnum.ID == flag) {
+					user.setUser_name(rs.getString(1));
+					user.setUser_introduction(rs.getString(2));
+				} else {
+					user.setUser_id(rs.getString(1));
+					user.setUser_name(rs.getString(2));
+					user.setUser_password(rs.getString(3));
+					user.setUser_introduction(rs.getString(4));
+				}
 			}
 
 		} catch (Exception e) {

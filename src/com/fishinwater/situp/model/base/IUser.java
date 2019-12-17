@@ -11,4 +11,6 @@ public interface IUser<T extends UserBean> {
 
 	T update(T user);
 	
+	String getUserById(String user_id);
+	
 }

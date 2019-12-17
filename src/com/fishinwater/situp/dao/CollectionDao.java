@@ -33,8 +33,11 @@ public class CollectionDao implements IBaseDAO<CollectionBean>, ICollectionDao<C
 			statement.setString(3, obj.getCollection_id());
 			if (statement.executeUpdate() == 1) {
 				result = IBaseModel.SUCCEED;
+			}else {
+				result = delete(obj);
 			}
 		} catch (Exception e) {
+			result = delete(obj);
 			e.printStackTrace();
 			// TODO: handle exception
 		} finally {
@@ -118,6 +121,63 @@ public class CollectionDao implements IBaseDAO<CollectionBean>, ICollectionDao<C
 			rs = null;
 		}
 		return collectionList;
+	}
+
+	@Override
+	public int delete(CollectionBean obj) {
+		// TODO Auto-generated method stub
+		int result = IBaseModel.FAILED;
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			String sql = "DELETE FROM collection WHERE post_id = '" + obj.getPost_id() + "' and user_id = '" + obj.getUser_id() + "'";
+			connection = JDBCUtils.getInstance().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(sql);
+			result = IBaseModel.SUCCEED;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			connection = null;
+			statement = null;
+		}
+		return result;
+	}
+
+	@Override
+	public int queryCollectionByUerIdAndPostId(String user_id, String post_id) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		Statement sta = null;
+		ResultSet rs = null;
+		List<CollectionBean> collectionList = new ArrayList<CollectionBean>();
+		try {
+			con =  JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			String sql = "select * from collection where user_id = '" + user_id + "' and post_id = '" + post_id + "'";
+			System.out.println(sql);
+			rs = sta.executeQuery(sql);
+			while (rs.next()) {
+				CollectionBean collection = new CollectionBean();
+				collection.setPost_id(rs.getString(1));
+				collection.setUser_id(rs.getString(2));
+				collection.setCollection_id(rs.getString(3));
+				collectionList.add(collection);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			con = null;
+			sta = null;
+			rs = null;
+		}
+		if (collectionList.size() != 0) {
+			return IBaseModel.SUCCEED;
+		} else {
+			return IBaseModel.FAILED;
+		}
 	}
 
 }

@@ -8,4 +8,8 @@ public interface ICollectionDao<T extends CollectionBean> {
 
 	List<T> queryCollectionsByUserId(String user_id);
 	
+	int queryCollectionByUerIdAndPostId(String user_id, String post_id);
+	
+	int delete(T obj);
+	
 }

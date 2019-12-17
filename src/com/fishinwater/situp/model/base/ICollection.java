@@ -10,4 +10,5 @@ public interface ICollection<T extends CollectionBean> {
 	
 	String queryCollectionsByUserId(String user_id);
 
+	int judgeCollectionIsExist(String post_id, String user_id);
 }
