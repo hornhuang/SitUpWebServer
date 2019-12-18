@@ -8,9 +8,16 @@ import com.fishinwater.situp.model.base.IBaseModel;
 import com.fishinwater.situp.model.base.IUser;
 import com.fishinwater.situp.utils.DaoEnum;
 import com.fishinwater.situp.utils.JsonUtils;
+import com.fishinwater.situp.utils.UpdateEnum;
 
 public class UserImpl implements IUser<UserBean> {
 
+	public static enum USERENUM {
+		UPDATE_PASSWORD,
+		UPDATE_INTRODUCE,
+		UPDATE_HEAD_IMG
+	}
+	
 	@Override
 	public UserBean login(UserBean user) {
 		// TODO Auto-generated method stub
@@ -53,14 +60,30 @@ public class UserImpl implements IUser<UserBean> {
 	}
 	
 	@Override
-	public UserBean update(UserBean user) {
+	public UserBean update(UpdateEnum updateFlag,  UserBean user) {
 		// TODO Auto-generated method stub
-		UserBean result = null;
+		UserBean result = new UserBean();
 		UserDao dao = new UserDao();
 		UserBean par_user= user;
 		UserBean userBean = dao.getBy(DaoEnum.ID, par_user.getUser_id());
+		System.out.println(userBean.toString());
 		if (userBean.getUser_id().equals(par_user.getUser_id())) {
-			result=dao.update(user);
+			switch (updateFlag) {
+			case UPDATE_PASSWORD:
+				result=dao.update(user);
+				break;
+
+			case UPDATE_INTRODUCE:
+				result=dao.updateIntroduction(user);
+				break;
+				
+			case UPDATE_HEAD_IMG:
+				result=dao.updateHeadImg(user);
+				break;
+				
+			default:
+				break;
+			}
 		}
 		return result;
 	}

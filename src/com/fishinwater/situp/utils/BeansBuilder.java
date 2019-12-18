@@ -65,7 +65,8 @@ public class BeansBuilder {
 		String user_name = request.getParameter("user_name");
 		String user_password = request.getParameter("user_password");
 		String user_introduction = request.getParameter("user_introduction");
-		
+		String user_head_img = request.getParameter("user_head_img");
+
 		UserBean user = new UserBean();
 		if (user_id != null && user_id.length() > 0) {
 			user.setUser_id(user_id);
@@ -77,7 +78,11 @@ public class BeansBuilder {
 		}else {
 			user.setUser_introduction("该同学很懒，啥也没留下~");
 		}
-
+		if (user_head_img != null && user_head_img.length() > 0) {
+			user.setUser_head_img(user_head_img);
+		} else {
+			user.setUser_head_img("https://img-blog.csdnimg.cn/20191218205438766.jpg");
+		}
 		user.setUser_name(user_name);
 		user.setUser_password(user_password);
 		return user;

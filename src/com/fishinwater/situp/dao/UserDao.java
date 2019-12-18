@@ -56,8 +56,55 @@ public class UserDao implements IBaseDAO<UserBean> {
 			con = JDBCUtils.getInstance().getConnection();
 			sta = con.createStatement();
 			result = sta.executeUpdate(sql);
-			// result = sta.executeUpdate();
-
+			System.out.println(obj.getUser_password());
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			JDBCUtils.close(con, sta);
+		}
+		if (result != 0) {
+			return obj;
+		}
+		return null;
+	}
+	
+	public UserBean updateIntroduction(UserBean obj) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		Connection con = null;
+		Statement sta = null;
+		System.out.println(obj.toString());
+		try {
+			String sql = "UPDATE USER SET user_introduction = '"+ obj.getUser_introduction() +"' WHERE user_id = '" + obj.getUser_id() + "'";
+			System.out.println(sql);
+			con = JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			result = sta.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			JDBCUtils.close(con, sta);
+		}
+		if (result != 0) {
+			return obj;
+		}
+		return null;
+	}
+	
+	public UserBean updateHeadImg(UserBean obj) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		Connection con = null;
+		Statement sta = null;
+		System.out.println(obj.toString());
+		try {
+			String sql = "UPDATE USER SET user_head_img = '"+ obj.getUser_head_img() +"' WHERE user_id = '" + obj.getUser_id() + "'";
+			System.out.println(sql);
+			con = JDBCUtils.getInstance().getConnection();
+			sta = con.createStatement();
+			result = sta.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
@@ -90,7 +137,7 @@ public class UserDao implements IBaseDAO<UserBean> {
 			String sql = "";
 			switch (flag) {
 				case ID:
-					sql = "select user_name,user_introduction from user where user_id = '" + where + "'";
+					sql = "select * from user where user_id = '" + where + "'";
 					break;
 				case NAME:
 					sql = "select * from user where user_name = '" + where + "'";
@@ -105,17 +152,11 @@ public class UserDao implements IBaseDAO<UserBean> {
 			rs = sta.executeQuery(sql);
 			if (rs.next()) {
 				user = new UserBean();
-				if (DaoEnum.ID == flag) {
-					user.setUser_name(rs.getString(1));
-					user.setUser_introduction(rs.getString(2));
-					user.setUser_id("");
-					user.setUser_password("");
-				} else {
-					user.setUser_id(rs.getString(1));
-					user.setUser_name(rs.getString(2));
-					user.setUser_password(rs.getString(3));
-					user.setUser_introduction(rs.getString(4));
-				}
+				user.setUser_id(rs.getString(1));
+				user.setUser_name(rs.getString(2));
+				user.setUser_password(rs.getString(3));
+				user.setUser_introduction(rs.getString(4));
+				user.setUser_head_img(rs.getString(5));
 			}
 
 		} catch (Exception e) {
