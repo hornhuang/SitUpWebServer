@@ -30,7 +30,7 @@ public class UserDao implements IBaseDAO<UserBean> {
 			sta.setString(1, UUID.randomUUID().toString());
 			sta.setString(2, name);
 			sta.setString(3, pswd);
-			sta.setString(4, "");
+			sta.setString(4, "ÁôÏÂÄãµÄ×ã¼£°É~");
 			result = sta.executeUpdate();
 
 		} catch (Exception e) {
@@ -108,6 +108,8 @@ public class UserDao implements IBaseDAO<UserBean> {
 				if (DaoEnum.ID == flag) {
 					user.setUser_name(rs.getString(1));
 					user.setUser_introduction(rs.getString(2));
+					user.setUser_id("");
+					user.setUser_password("");
 				} else {
 					user.setUser_id(rs.getString(1));
 					user.setUser_name(rs.getString(2));
@@ -142,19 +144,20 @@ public class UserDao implements IBaseDAO<UserBean> {
 			rs = sta.executeQuery(sql);
 			while (rs.next()) {
 				UserBean user = new UserBean();
+				user.setUser_id(rs.getString(1));
 				user.setUser_name(rs.getString(2));
 				user.setUser_password(rs.getString(3));
-				// System.out.println(rs.getString(2) + " " + rs.getString(3));
+				user.setUser_introduction(rs.getString(4));
 				list.add(user);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 			// TODO: handle exception
 		} finally {
-			// JDBCUtils.close(con, sta, rs);
-
+			con = null;
+			sta = null;
+			rs = null;
 		}
 
 		return list;

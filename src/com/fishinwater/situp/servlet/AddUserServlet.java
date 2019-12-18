@@ -54,7 +54,6 @@ public class AddUserServlet extends HttpServlet {
 		userbean.setUser_password(pswd);
 		UserImpl userdao = new UserImpl();
 		int result = userdao.register(userbean);
-		System.out.println("---" + result + "----");
 		try {
 			response.getWriter().println(result);
 

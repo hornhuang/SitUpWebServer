@@ -20,14 +20,12 @@ public class UserImpl implements IUser<UserBean> {
 		for (int i = 0; i < list.size(); i++) {
 			UserBean userBean = (UserBean) list.get(i);
 			if (par_user.getUser_name().equals(userBean.getUser_name())) {
-				
 				if (par_user.getUser_password().equals(userBean.getUser_password())) {
-					return par_user;
-					
+					userBean.setUser_password("");
+					return userBean;
 				}else {
 					return null;
 				}
-				
 			}
 		}
 		return null;
