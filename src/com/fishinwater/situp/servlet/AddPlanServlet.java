@@ -46,7 +46,7 @@ public class AddPlanServlet extends HttpServlet {
 		PlanBean planBean = BeansBuilder.buildPlanBean(request);
 		PlanImpl planImpl = new PlanImpl();
 
-		int result = planImpl.add(planBean);
+		String result = planImpl.add(planBean);
 		response.getWriter().println(result);
 		response.getWriter().close();
 	}

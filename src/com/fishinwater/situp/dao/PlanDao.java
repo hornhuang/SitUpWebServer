@@ -19,9 +19,9 @@ import com.fishinwater.situp.utils.JDBCUtils;
 public class PlanDao implements IBaseDAO<PlanBean>, IPlanDao<PlanBean> {
 
 	@Override
-	public int add(PlanBean obj) {
+	public String addPlan(PlanBean obj) {
 		// TODO Auto-generated method stub
-		int result = IBaseModel.FAILED;
+		String result = "";
 		PlanBean planBean = obj;
 		Connection con= null;
 		PreparedStatement sta = null;
@@ -38,7 +38,7 @@ public class PlanDao implements IBaseDAO<PlanBean>, IPlanDao<PlanBean> {
 			sta.setString(6, planBean.getPlan_start_date());
 			sta.setString(7, planBean.getPlan_end_date());
 			if(sta.executeUpdate() == 1) {
-				result = IBaseModel.SUCCEED;
+				result = planBean.getPlan_id();
 			};
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -193,6 +193,12 @@ public class PlanDao implements IBaseDAO<PlanBean>, IPlanDao<PlanBean> {
 			rs = null;
 		}
 		return planBean;
+	}
+
+	@Override
+	public int add(PlanBean obj) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.fishinwater.situp.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -158,7 +159,7 @@ public class BeansBuilder {
 			dayBean.setDay_id(request.getParameter("day_id"));
 		}
 		if (dayBean.getDay_plans() == null) {
-			dayBean.setDay_plans("");
+			dayBean.setDay_plans(JsonUtils.arrayToJsonStr(new ArrayList<String>()));
 		}
 		return dayBean;
 	}

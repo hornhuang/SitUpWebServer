@@ -8,7 +8,7 @@ import com.fishinwater.situp.model.PlanImpl;
 
 public interface IPlan<T extends PlanBean> {
 	
-	int add(T plan);
+	String add(T plan);
 	
 	int del(String planid);
 	

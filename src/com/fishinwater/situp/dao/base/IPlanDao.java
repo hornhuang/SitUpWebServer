@@ -11,4 +11,5 @@ public interface IPlanDao<T extends PlanBean> {
 	
 	T queryByPlanId(String plan_id);
 	
+	String addPlan(T obj);
 }

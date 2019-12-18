@@ -11,11 +11,11 @@ import com.fishinwater.situp.utils.JsonUtils;
 public class PlanImpl implements IPlan<PlanBean> {
 
 	@Override
-	public int add(PlanBean plan) {
+	public String add(PlanBean plan) {
 		// TODO Auto-generated method stub
 		PlanBean par_plan  = plan;
 		PlanDao dao = new PlanDao();
-		return dao.add(par_plan);
+		return dao.addPlan(par_plan);
 	}
 
 	@Override
