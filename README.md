@@ -33,10 +33,26 @@ http://localhost:8080/SitUpWebServer/login?username=qwe&password=qwe
 返回 UserBean JSON
 ```
 
-- 修改
+- 修改密码
 
 ```
 http://localhost:8080/SitUpWebServer/update?user_id=0c68ab94-5af5-43ea-8be4-6bc5c4e29b3e&user_password=123456
+
+返回 UserBean JSON
+```
+
+- 修改简介
+
+```
+http://localhost:8080/SitUpWebServer/UpdateUserIntroduceServlet?user_id=478c7092-0d6d-46a3-bd4d-24f1a52296dd&user_introduction=123456
+
+返回 UserBean JSON
+```
+
+- 修改头像
+
+```
+http://localhost:8080/SitUpWebServer/updateuserheadimg?user_id=478c7092-0d6d-46a3-bd4d-24f1a52296dd&user_head_img=123456
 
 返回 UserBean JSON
 ```
