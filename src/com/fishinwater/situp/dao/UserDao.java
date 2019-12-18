@@ -24,13 +24,14 @@ public class UserDao implements IBaseDAO<UserBean> {
 
 			String name = user.getUser_name();
 			String pswd = user.getUser_password();
-			String sql = "insert into user () values(?,?,?,?) ";
+			String sql = "insert into user () values(?,?,?,?,?) ";
 			con = JDBCUtils.getInstance().getConnection();
 			sta = con.prepareStatement(sql);
 			sta.setString(1, UUID.randomUUID().toString());
 			sta.setString(2, name);
 			sta.setString(3, pswd);
 			sta.setString(4, "ÁôÏÂÄãµÄ×ã¼£°É~");
+			sta.setString(5, "https://img-blog.csdnimg.cn/20191218205438766.jpg");
 			result = sta.executeUpdate();
 
 		} catch (Exception e) {
