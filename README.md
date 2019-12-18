@@ -223,7 +223,7 @@ http://localhost:8080/SitUpWebServer/updateday?day_id=2486c3dd-55d8-4666-8444-ea
 - 查询
 
 ```
-http://localhost:8080/SitUpWebServer/getday?user_id=85bbf54c-459a-46b7-a0bf-8c3a5a00b888&day_id=2486c3dd-55d8-4666-8444-eae2f44051d1
+http://47.107.132.227:8080/SitUpWebServer/getday?user_id=ddd4d678-2111-4ffd-a20c-543b689e6162&day_id=2019-12-18
 
 返回 int
 ```
