@@ -36,7 +36,7 @@ http://localhost:8080/SitUpWebServer/login?username=qwe&password=qwe
 - 修改密码
 
 ```
-http://localhost:8080/SitUpWebServer/update?user_id=0c68ab94-5af5-43ea-8be4-6bc5c4e29b3e&user_password=123456
+http://localhost:8080/SitUpWebServer/updatepassword?user_id=0c68ab94-5af5-43ea-8be4-6bc5c4e29b3e&user_password=123456
 
 返回 UserBean JSON
 ```
