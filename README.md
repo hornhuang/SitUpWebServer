@@ -244,6 +244,15 @@ http://47.107.132.227:8080/SitUpWebServer/getday?user_id=ddd4d678-2111-4ffd-a20c
 返回 int
 ```
 
+# 图片
+
+- 查询
+
+```
+http://localhost:8080/SitUpWebServer/GetPicturesByFlagServlet?icon_flag=head
+
+返回 [{"icon_flag":"head","icon_id":"1","icon_url":"https://img-blog.csdnimg.cn/20191218205438766.jpg"},{"icon_flag":"head","icon_id":"2","icon_url":"q"},{"icon_flag":"head","icon_id":"3","icon_url":"e"},{"icon_flag":"head","icon_id":"4","icon_url":"d"},{"icon_flag":"head","icon_id":"5","icon_url":"v"}]
+```
 
 
 ## 返回值
