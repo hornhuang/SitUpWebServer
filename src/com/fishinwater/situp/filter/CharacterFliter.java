@@ -12,7 +12,8 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class CharacterFliter
  */
-@WebFilter("/*.*")
+@WebFilter(filterName = "CharacterFliter", 
+	urlPatterns = "/*")
 public class CharacterFliter implements Filter {
 
     /**
