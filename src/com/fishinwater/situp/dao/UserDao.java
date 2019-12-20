@@ -30,7 +30,7 @@ public class UserDao implements IBaseDAO<UserBean> {
 			sta.setString(1, UUID.randomUUID().toString());
 			sta.setString(2, name);
 			sta.setString(3, pswd);
-			sta.setString(4, "ÁôÏÂÄãµÄ×ã¼£°É~");
+			sta.setString(4, "ÁôÏÂÄãµÄ×ã¼£°É£¡");
 			sta.setString(5, "https://img-blog.csdnimg.cn/20191218205438766.jpg");
 			result = sta.executeUpdate();
 
@@ -52,7 +52,7 @@ public class UserDao implements IBaseDAO<UserBean> {
 		Statement sta = null;
 		System.out.println(obj.toString());
 		try {
-			String sql = "UPDATE USER SET user_password = '" + obj.getUser_password() + "' WHERE user_id = '" + obj.getUser_id() + "'";
+			String sql = "UPDATE user SET user_password = '" + obj.getUser_password() + "' WHERE user_id = '" + obj.getUser_id() + "'";
 			System.out.println(sql);
 			con = JDBCUtils.getInstance().getConnection();
 			sta = con.createStatement();
@@ -77,7 +77,7 @@ public class UserDao implements IBaseDAO<UserBean> {
 		Statement sta = null;
 		System.out.println(obj.toString());
 		try {
-			String sql = "UPDATE USER SET user_introduction = '"+ obj.getUser_introduction() +"' WHERE user_id = '" + obj.getUser_id() + "'";
+			String sql = "UPDATE user SET user_introduction = '"+ obj.getUser_introduction() +"' WHERE user_id = '" + obj.getUser_id() + "'";
 			System.out.println(sql);
 			con = JDBCUtils.getInstance().getConnection();
 			sta = con.createStatement();
@@ -99,9 +99,10 @@ public class UserDao implements IBaseDAO<UserBean> {
 		int result = 0;
 		Connection con = null;
 		Statement sta = null;
+		String sql = "";
 		System.out.println(obj.toString());
 		try {
-			String sql = "UPDATE USER SET user_head_img = '"+ obj.getUser_head_img() +"' WHERE user_id = '" + obj.getUser_id() + "'";
+			sql = "UPDATE user SET user_head_img = '"+ obj.getUser_head_img() +"' WHERE user_id = '" + obj.getUser_id() + "'";
 			System.out.println(sql);
 			con = JDBCUtils.getInstance().getConnection();
 			sta = con.createStatement();
@@ -109,13 +110,16 @@ public class UserDao implements IBaseDAO<UserBean> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
+			obj.setUser_password(result + "<>" + sql + "<>" + e.toString());
+			return obj;
 		} finally {
 			JDBCUtils.close(con, sta);
 		}
 		if (result != 0) {
 			return obj;
 		}
-		return null;
+		obj.setUser_password(result + "<>" + sql);
+		return obj;
 	}
 
 	public int delete(String id) {
@@ -162,7 +166,6 @@ public class UserDao implements IBaseDAO<UserBean> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e);
 			// TODO: handle exception
 		} finally {
 			con = null;

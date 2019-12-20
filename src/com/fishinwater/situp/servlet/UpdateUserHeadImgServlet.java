@@ -41,17 +41,23 @@ public class UpdateUserHeadImgServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UserImpl userImpl = new UserImpl();
-		UserBean user = BeansBuilder.buildUserBean(request);
-		UserBean result = userImpl.update(UpdateEnum.UPDATE_HEAD_IMG, user);
-		
-		Gson gson = new Gson();
 		String json = "";
-		if (result != null) {
-			json = gson.toJson(result);
+		try {
+			UserImpl userImpl = new UserImpl();
+			UserBean user = BeansBuilder.buildUserBean(request);
+			UserBean result = userImpl.update(UpdateEnum.UPDATE_HEAD_IMG, user);
+		
+			Gson gson = new Gson();
+			if (result != null) {
+				json = gson.toJson(result);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			json = e.toString();
 		}
 		
 		try {
+			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(json);
 		} catch (Exception e) {
 			// TODO: handle exception

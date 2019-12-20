@@ -66,24 +66,17 @@ public class UserImpl implements IUser<UserBean> {
 		UserDao dao = new UserDao();
 		UserBean par_user= user;
 		UserBean userBean = dao.getBy(DaoEnum.ID, par_user.getUser_id());
-		System.out.println(userBean.toString());
-		if (userBean.getUser_id().equals(par_user.getUser_id())) {
-			switch (updateFlag) {
-			case UPDATE_PASSWORD:
+		if (userBean != null) {
+			if (updateFlag == UpdateEnum.UPDATE_PASSWORD) {
 				result=dao.update(user);
-				break;
-
-			case UPDATE_INTRODUCE:
+			} else if (updateFlag == UpdateEnum.UPDATE_INTRODUCE) {
 				result=dao.updateIntroduction(user);
-				break;
-				
-			case UPDATE_HEAD_IMG:
+			} else if (updateFlag == UpdateEnum.UPDATE_HEAD_IMG) {
 				result=dao.updateHeadImg(user);
-				break;
-				
-			default:
-				break;
 			}
+		}else {
+			result.setUser_id("未找到该用户");
+			result.setUser_introduction(user.getUser_id());
 		}
 		return result;
 	}

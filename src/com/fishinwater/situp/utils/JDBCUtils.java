@@ -32,7 +32,7 @@ public class JDBCUtils {
 		Connection connection;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://127.0.0.1:3306/situp?serverTimezone=GMT%2B8";
+			String url = "jdbc:mysql://127.0.0.1:3306/situp?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8";
 			String username = "root";
 //			String password = "qaz123456";
 			String password = "";

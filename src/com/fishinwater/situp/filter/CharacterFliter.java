@@ -37,7 +37,7 @@ public class CharacterFliter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/plain;charset=utf-8");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
