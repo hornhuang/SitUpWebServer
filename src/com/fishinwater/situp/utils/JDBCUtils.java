@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Comparator;
+import java.util.TreeMap;
 
 /*定义JDBC工具类
  * 定义方法，直接返回数据库的连接对象*/
@@ -34,8 +36,8 @@ public class JDBCUtils {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://127.0.0.1:3306/situp?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8";
 			String username = "root";
-//			String password = "qaz123456";
-			String password = "";
+			String password = "qaz123456";
+//			String password = "";
 			connection = DriverManager.getConnection(url, username, password);
 		} catch (Exception ex) {
 			// TODO: handle exception
